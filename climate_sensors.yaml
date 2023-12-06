@@ -84,9 +84,7 @@ template:
       - name: 'Presetting Matrimoniale'
         state: '{{ states.climate.calorifero_camera_da_letto.attributes.preset_mode }}'
 
-   - sensor:
-      - name: 'Presetting Matrimoniale'
-        state: '{{ states.climate.calorifero_camera_da_letto.attributes.preset_mode }}'
+   
 
         
 ###### Utility Meter ######
