@@ -226,7 +226,7 @@ elements:
       left: 8%
       width: 07%
     state_image:
-      'off': /local/netatmo/net_off.png
+      'off': /local/netatmo/netatmo_off.png
       auto: /local/netatmo/netatmo_on.png
     tap_action:
       action: call-service
