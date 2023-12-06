@@ -11,4 +11,18 @@ Potete installare il tutto sia come package, sia inserendo i sensori nel vostro 
 
 Massima flessibilità per chi non è troppo pratico.
 
-Non ho inserito la parte grafica dei sensori che monitorano le accensioni quotidiane,mensili e annuali, in quanto ognuno può integrarli come meglio crede, graficamente (io uso mushroom scaricabile da HACS), restano comunque fuori dalla singola card di ogni valvola
+Non ho inserito la parte grafica dei sensori che monitorano le accensioni quotidiane,mensili e annuali, in quanto ognuno può integrarli come meglio crede, graficamente (io uso mushroom scaricabile da HACS), restano comunque fuori dalla singola card di ogni valvola.
+
+In ogni caso questo è il risultato finale:
+
+![IMG_3151](https://github.com/FedeL16/Valve_Netatmo/assets/141550943/d90e9e12-5fe9-4bbc-8a54-457453b6305f)
+
+INSTALLAZIONE:
+
+- Inserire in package il file
+
+
+
+  
+
+
