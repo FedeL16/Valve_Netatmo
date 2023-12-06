@@ -19,7 +19,28 @@ In ogni caso questo è il risultato finale:
 
 INSTALLAZIONE:
 
-- Inserire in package il file
+- Inserire in package il file climate_sensors.yaml così come il file automation.yaml e script.yaml, oppure copiate ogni sensore nel vostro file dei sensori o in configuration.yaml, mentre create ogni automazione e  ogni script via yaml nel menù di riferimento, come sopra descritto.
+RICORDARSI di variare le entità contenute nei file con le vostre corrette. (ogni sensore, automazione e script dovrà essere rinominato e associato alla vostra entità).
+
+- Riavviate HA
+
+- Scaricate le varie immagini e inseritele nella vostra configurazione. Per farlo consiglio di creare, all'interno della cartella www, la cartella chiamata "netatmo"  e al suo interno inserite ogni singola immagini .png. Rispettate il percorso e i nomi delle immagini così non dovrete cambiare nulla nella card.
+
+- Andate nella vostra dashboard che preferite, aggiungete la card tramite card manuale e copiate il codice, ricordandovi anche qui di cambiare le vostre entità correttamente. Potete eliminare le parti che reputate di non inserire o di cui non disponete (vedi sensore apertura finestra)
+
+- Infine i sensori che conteggiano i tempi di accensione potete inserirli fuori dalla card (mio consiglio) o anche all'interno, ma dovreste modificare il codice della card stessa. Io uso la grafica di mushroom (scaricabile da HACS) e ho inserito tutto esternamente.
+
+Se avete più valvole dovrete rifare questa procedura per ciascuna, tranne l'upload delle immagini.
+
+PS Capitolo Apertura Valvole: questo sensore non va creato, ma dovreste trovarlo come attributo nella pagina strumenti per sviluppatori->stati>ricerca entità>nomedellavostraentità e allora potrete inserirlo in card con la vostra dicitura corretta. 
+
+Vi ringrazio qualora voleste contribuire al miglioramento del package.
+
+Un Saluto
+
+
+
+
 
 
 
