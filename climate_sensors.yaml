@@ -1,0 +1,132 @@
+
+
+
+
+
+
+######## Sensors #########
+
+sensor:
+ 
+  - platform: history_stats
+    name: valvMatrimonialeDay
+    entity_id: binary_sensor.valore_matrimoniale
+    state: "on"
+    type: time
+    start: "{{ now().replace(hour=0, minute=0, second=0) }}"
+    end: "{{ now() }}"
+
+  - platform: statistics
+    name: "Matrimoniale min"
+    entity_id: sensor.temperatura_camera_da_letto
+    state_characteristic: value_min
+    sampling_size: 20
+    max_age:
+      hours: 168
+
+  - platform: statistics
+    name: "Matrimoniale max"
+    entity_id: sensor.temperatura_camera_da_letto
+    state_characteristic: value_max
+    sampling_size: 20
+    max_age:
+      hours: 168
+
+template:
+
+  - sensor:
+      - name: Temperatura Camera da Letto
+        state: "{{ states.climate.calorifero_camera_da_letto.attributes.current_temperature }}°C"
+  
+  
+  - sensor:
+      - name: Valvola Camera da Letto
+        state: "{{ states.climate.calorifero_camera_da_letto.attributes.heating_power_request }}"
+  
+ 
+        
+
+  
+  - sensor:
+      - name: Valvola Matrimoniale day Definitivo
+        state: "{% set hours = states('sensor.valvmatrimonialeday') | float %} 
+                {% set minutes = ((hours % 1) * 60) | int %}  
+                {% set hours = (hours - (hours % 1)) | int %}  
+                {{ '%02i:%02i'%(hours, minutes) }} H" 
+        
+        
+  - sensor:
+      - name: Valvola Matrimoniale month Definitivo
+        state: "{% set hours = states('sensor.valvola_matrimoniale_month') | float %} 
+                {% set minutes = ((hours % 1) * 60) | int %}  
+                {% set hours = (hours - (hours % 1)) | int %}  
+                {{ '%02i:%02i'%(hours, minutes) }} H"
+        
+  - sensor:
+      - name: Valvola Matrimoniale Year Definitivo
+        state: "{% set hours = states('sensor.valvola_matrimoniale_year') | float %} 
+                {% set minutes = ((hours % 1) * 60) | int %}  
+                {% set hours = (hours - (hours % 1)) | int %}  
+                {{ '%02i:%02i'%(hours, minutes) }} H"
+                
+  - sensor:
+      - name: 'Stato Valvola Camera da Letto'
+        state: >-
+          {% if is_state('climate.calorifero_camera_da_letto', 'heat') %}
+          Boost
+          {% elif is_state('climate.calorifero_camera_da_letto', 'auto') %}
+          Automatico
+          {% elif is_state('climate.calorifero_camera_da_letto', 'off') %}
+          Spenta
+          {% endif %}
+
+  - sensor:
+      - name: 'Presetting Matrimoniale'
+        state: '{{ states.climate.calorifero_camera_da_letto.attributes.preset_mode }}'
+
+   - sensor:
+      - name: 'Presetting Matrimoniale'
+        state: '{{ states.climate.calorifero_camera_da_letto.attributes.preset_mode }}'
+
+        
+###### Utility Meter ######
+  
+
+utility_meter:
+  valvola_matrimoniale_day:
+    source: sensor.valvmatrimonialeday
+    cycle: daily
+    name: Valvola Matrimoniale Day
+  valvola_matrimoniale_month:
+    source: sensor.valvmatrimonialeday
+    cycle: monthly
+    name: Valvola Matrimoniale Month
+  valvola_matrimoniale_year:
+    source: sensor.valvmatrimonialeday
+    cycle: yearly
+    name: Valvola Matrimoniale Year
+  
+ 
+##### Termostato #### 
+
+template:
+ 
+  - sensor:
+      - name: 'Stato Termostato Emma'
+        state: >-
+          {% if is_state('climate.termostato_emma', 'heat') %}
+          Boost
+          {% elif is_state('climate.termostato_emma', 'auto') %}
+          Automatico
+          {% elif is_state('climate.termostato_emma', 'off') %}
+          Spenta
+          {% elif is_state('climate.termostato_emma', 'cool') %}
+          Freddo
+          {% endif %}
+  
+  
+  - sensor:
+      - name: 'Presetting Termostato Emma'
+        state: '{{ states.climate.termostato_emma.attributes.preset_mode }}'
+
+
