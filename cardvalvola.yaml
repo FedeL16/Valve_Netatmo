@@ -1,0 +1,260 @@
+type: picture-elements
+image: /local/netatmo/Netatmo_background_409x72_2.png
+elements:
+  - type: state-icon
+    entity: binary_sensor.finestra_matrimoniale_apertura
+    icon: mdi:window-open-variant
+    title: Finestra
+    tap_action:
+      action: more-info
+    style:
+      '--mdc-icon-size': 30px
+      '--paper-item-icon-color': red
+      top: 10%
+      left: 92%
+      width: 10%
+  - type: image
+    entity: climate.calorifero_camera_da_letto
+    title: Temperatura Up
+    tap_action:
+      action: call-service
+      service: script.up_valvola_matrimoniale
+    hold_action:
+      action: more-info
+    image: /local/netatmo/Netatmo_up.png
+    style:
+      top: 52.6%
+      left: 76.5%
+      width: 6%
+  - type: image
+    entity: climate.calorifero_camera_da_letto
+    title: Temperatura Down
+    tap_action:
+      action: call-service
+      service: script.down_valvola_matrimoniale
+    hold_action:
+      action: more-info
+    image: /local/netatmo/Netatmo_down.png
+    style:
+      top: 52.6%
+      left: 56.5%
+      width: 6%
+  - type: image
+    entity: binary_sensor.valore_matrimoniale
+    title: Caldo
+    tap_action:
+      action: none
+    image: /local/netatmo/Netatmo_chauffe.png
+    style:
+      top: 58%
+      left: 25.5%
+      width: 7%
+    state_filter:
+      heating: brightness(100%) saturate(1)
+      idle: opacity(0%)
+  - type: image
+    entity: sensor.presetting_matrimoniale
+    title: Manuale
+    tap_action:
+      action: none
+    image: /local/netatmo/manuale.png
+    style:
+      top: 30%
+      left: 39%
+      width: 9%
+    state_filter:
+      manual: brightness(100%) saturate(1)
+      Schedule: opacity(0%)
+      away: opacity(0%)
+      Frost Guard: opacity(0%)
+  - type: image
+    entity: sensor.presetting_matrimoniale
+    title: Assente
+    tap_action:
+      action: none
+    image: /local/netatmo/assente.png
+    style:
+      top: 29.8%
+      left: 38.6%
+      width: 11%
+    state_filter:
+      away: brightness(100%) saturate(1)
+      Schedule: opacity(0%)
+      manual: opacity(0%)
+      Frost Guard: opacity(0%)
+  - type: image
+    entity: sensor.presetting_matrimoniale
+    title: Frost Guard
+    tap_action:
+      action: none
+    image: /local/netatmo/frostguard.png
+    style:
+      top: 29.8%
+      left: 38.6%
+      width: 11%
+    state_filter:
+      Frost Guard: brightness(100%) saturate(1)
+      Schedule: opacity(0%)
+      manual: opacity(0%)
+      away: opacity(0%)
+  - type: image
+    entity: sensor.presetting_matrimoniale
+    title: Automatico
+    tap_action:
+      action: none
+    image: /local/netatmo/automatico.png
+    style:
+      top: 29.9%
+      left: 39%
+      width: 11%
+    state_filter:
+      Schedule: brightness(100%) saturate(1)
+      away: opacity(0%)
+      manual: opacity(0%)
+      Frost Guard: opacity(0%)
+  - type: state-label
+    entity: sensor.temperatura_camera_da_letto
+    unit_of_measurement: .
+    title: Températura Attuale
+    tap_action:
+      action: null
+    style:
+      top: 48%
+      left: 25.5%
+      font-size: 1.6em
+      color: black
+      font-weight: 600
+  - type: state-label
+    entity: climate.calorifero_camera_da_letto
+    attribute: temperature
+    suffix: ºC
+    title: Températura Impostata
+    tap_action:
+      action: null
+    style:
+      top: 25%
+      left: 25.5%
+      font-size: 1em
+      color: white
+      font-weight: 600
+  - type: state-label
+    entity: climate.camera_da_letto
+    attribute: friendly_name
+    style:
+      top: 12%
+      left: 66%
+      font-size: 1.4em
+      color: black
+      font-weight: 400
+  - type: state-label
+    entity: sensor.calorifero_camera_da_letto_battery_percent
+    title: '% Batterie'
+    tap_action:
+      action: none
+    style:
+      top: 79%
+      left: 8.3%
+      font-size: 0.7em
+      color: grey
+      font-weight: 600
+  - type: state-icon
+    entity: sensor.calorifero_camera_da_letto_battery_percent
+    title: Batteria
+    icon: mdi:battery-high
+    tap_action:
+      action: more-info
+    style:
+      top: 86%
+      left: 8%
+      '--paper-item-icon-color': grey
+  - type: image
+    entity: climate.calorifero_camera_da_letto
+    title: null
+    tap_action:
+      action: none
+    image: /local/netatmo/bouton_fond-300x98.png
+    style:
+      top: 83.2%
+      left: 71%
+      width: 58%
+  - type: image
+    entity: climate.calorifero_camera_da_letto
+    title: Away
+    tap_action:
+      action: call-service
+      service: script.preset_matrimoniale_away
+    image: /local/netatmo/assente.png
+    style:
+      top: 83%
+      left: 53%
+      width: 12%
+  - type: image
+    entity: climate.calorifero_camera_da_letto
+    title: Frost Guard
+    tap_action:
+      action: call-service
+      service: script.preset_matrimoniale_frostguard
+    image: /local/netatmo/frostguard.png
+    style:
+      top: 83.2%
+      left: 79.5%
+      width: 14.5%
+  - type: image
+    entity: climate.calorifero_camera_da_letto
+    title: Automatico
+    tap_action:
+      action: call-service
+      service: script.preset_matrimoniale_schedule
+    image: /local/netatmo/automatico.png
+    style:
+      top: 83.2%
+      left: 67%
+      width: 10%
+  - type: state-icon
+    entity: select.termostato
+    title: Planning
+    icon: mdi:calendar
+    style:
+      top: 85%
+      left: 26%
+      '--paper-item-icon-color': black
+  - type: image
+    entity: climate.calorifero_camera_da_letto
+    title: On / Off
+    style:
+      top: 10%
+      left: 8%
+      width: 07%
+    state_image:
+      'off': /local/netatmo/net_off.png
+      auto: /local/netatmo/netatmo_on.png
+    tap_action:
+      action: call-service
+      service: script.modalita_auto_e_off_matrimoniale
+  - type: state-label
+    entity: climate.calorifero_camera_da_letto
+    attribute: heating_power_request
+    prefix: Apertura
+    suffix: '%'
+    style:
+      top: 10%
+      left: 18.5%
+      width: 7%
+      color: black
+  - type: state-label
+    entity: sensor.matrimoniale_max
+    prefix: Max
+    suffix: ºC
+    style:
+      top: 22%
+      left: 56%
+      font-size: 1em
+      color: black
+      font-weight: 400
+  - type: state-label
+    entity: sensor.matrimoniale_min
+    prefix: Min
+    suffix: ºC
+    style:
+      top: 22%
+      left: 77%
