@@ -62,7 +62,7 @@ mode: single
     sequence:
       - service: climate.set_preset_mode
         data:
-          preset_mode: Away
+          preset_mode: away
         target:
           entity_id: climate.calorifero_cameretta_palestra
     mode: single
