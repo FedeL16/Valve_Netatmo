@@ -2,15 +2,24 @@
 
 script:
 
-  - alias: down valvola matrimoniale
-    sequence:
-      - service: climate.set_temperature
-        data:
-          temperature: "{{(states.sensor.calorifero_camera_da_letto_temperature | float - 0.5)}}"
-        target:
-          entity_id: climate.calorifero_camera_da_letto
-    icon: mdi:menu-down-outline
-    mode: single
+  alias: down valvola matrimoniale
+sequence:
+  - service: input_number.set_value
+    data_template:
+      entity_id: input_number.input_temp_matrimoniale
+      value: >
+        {% set new_temp = states('input_number.input_temp_matrimoniale') | float
+        - 0.5 %} {% if new_temp <= 30 %}
+          {{ new_temp }}
+        {% else %}
+          30
+        {% endif %}
+  - service: climate.set_temperature
+    data_template:
+      entity_id: climate.calorifero_camera_da_letto
+      temperature: "{{ states('input_number.input_temp_matrimoniale') }}"
+icon: mdi:menu-down-outline
+mode: single
 
   - alias: modalità off matrimoniale
     sequence:
@@ -76,15 +85,24 @@ script:
           entity_id: climate.calorifero_camera_da_letto
     mode: single
 
-  - alias: up valvola matrimoniale
-    sequence:
-      - service: climate.set_temperature
-        data:
-          temperature: "{{(states.sensor.calorifero_camera_da_letto_temperature| float + 0.5)}}"
-        target:
-          entity_id: climate.calorifero_cameretta_palestra
-    icon: mdi:upload-outline
-    mode: single
+  alias: up valvola matrimoniale
+sequence:
+  - service: input_number.set_value
+    data_template:
+      entity_id: input_number.input_temp_matrimoniale
+      value: >
+        {% set new_temp = states('input_number.input_temp_matrimoniale') | float
+        + 0.5 %} {% if new_temp <= 30 %}
+          {{ new_temp }}
+        {% else %}
+          30
+        {% endif %}
+  - service: climate.set_temperature
+    data_template:
+      entity_id: climate.calorifero_camera_da_letto
+      temperature: "{{ states('input_number.input_temp_matrimoniale') }}"
+icon: mdi:upload-outline
+mode: single
 
 
 
