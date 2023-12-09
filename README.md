@@ -34,6 +34,10 @@ Se avete più valvole dovrete rifare questa procedura per ciascuna, tranne l'upl
 
 PS Capitolo Apertura Valvole: questo sensore non va creato, ma dovreste trovarlo come attributo nella pagina strumenti per sviluppatori->stati>ricerca entità>nomedellavostraentità e allora potrete inserirlo in card con la vostra dicitura corretta. 
 
+La card funziona sia con integrazione ufficiale netatmo che con l'addon di sdomotica, nella card dovete solo aggiungere la riga: "heat: local/netatmo/netatmo_on.jpg" nella parte di codice riferita al pulsante on e off (modalita_auto_e_off_xxx).
+
 Vi ringrazio qualora voleste contribuire al miglioramento del package.
+
+
 
 Un Saluto
