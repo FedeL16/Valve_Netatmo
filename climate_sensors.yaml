@@ -84,6 +84,22 @@ template:
       - name: 'Presetting Matrimoniale'
         state: '{{ states.climate.calorifero_camera_da_letto.attributes.preset_mode }}'
 
+  - binary_sensor:
+     - platform: template
+       sensors:
+         valore_matrimoniale_cucina:
+           friendly_name: "Valore Matrimoniale"
+           value_template: >-
+             {% set hvac_action = state_attr('climate.calorifero_camera_da_letto', 'hvac_action') %}
+             {% if hvac_action == 'idle' %}
+             off
+             {% elif hvac_action == 'heating' %}
+             on
+             {% else %}
+             off
+             {% endif %}
+           entity_id: climate.calorifero_camera_da_letto
+
    
 
         
